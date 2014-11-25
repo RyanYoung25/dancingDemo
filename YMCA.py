@@ -99,7 +99,7 @@ def stand(robot):
 def doTheYMCA():
     robot = maestor()
     crouch(robot)
-    for i in xrange(0,3):   #for(int i=0; i < 3; i ++) 
+    for i in xrange(0,1):   #for(int i=0; i < 3; i ++) 
         theY(robot)
         waitForJoints(robot)
         theM(robot)
