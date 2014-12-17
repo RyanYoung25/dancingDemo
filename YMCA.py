@@ -127,5 +127,21 @@ def doTheYMCARobot(robot):
         waitForJoints(robot)
     stand(robot)
 
+def getDanceList():
+    danceList = []
+    #add all of the key parts of the dance. Including the wait for joints
+    danceList.append(theY)
+    danceList.append(waitForJoints)
+    danceList.append(theM)
+    danceList.append(waitForJoints)
+    danceList.append(theC)
+    danceList.append(waitForJoints)
+    danceList.append(theA)
+    danceList.append(waitForJoints)
+    danceList.append(upperBodyHome)
+    danceList.append(waitForJoints)
+
+    return danceList
+
 if __name__ == '__main__':
     doTheYMCA() 

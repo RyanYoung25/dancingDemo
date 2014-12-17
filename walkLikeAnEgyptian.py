@@ -139,5 +139,23 @@ def walkLikeAnEgyptianRobot(robot):
     wait_for_joint(robot)
     stand(robot)
 
+def getDanceList():
+    danceList = []
+    #add all of the key parts of the dance. Including the wait for joints
+    for i in xrange(0, 2):
+        danceList.append(one_way_S)
+        danceList.append(waitForJoints)
+        danceList.append(one_way_extended)
+        danceList.append(waitForJoints)
+
+    for i in xrange(0, 2):
+        danceList.append(other_way_S)
+        danceList.append(waitForJoints)
+        danceList.append(other_way_extended)
+        danceList.append(waitForJoints)
+
+
+    return danceList
+
 if __name__ == '__main__':
     walkLikeAnEgyptian()

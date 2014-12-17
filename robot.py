@@ -14,27 +14,52 @@ def bendDown(robot):
     robot.waitForJoint("RFZ")
     robot.waitForJoint("LFZ")
 
-def doTheRobot(robot):
-    robot.setProperty("NKY", "position", -.65)
-#   robot.waitForJoint("NKY")
-    robot.setProperties("RSY RSR", "position position", "1.57 -1.35")
+def waitForJoints(robot):
     robot.waitForJoint("RSR")
     robot.waitForJoint("RSY")
-    for i in range(0, 2):
-        robot.setProperty("REP", "position", -1.7)
-        robot.waitForJoint("REP")
-        robot.setProperty("REP", "position", 0)
-        robot.waitForJoint("REP")
-    robot.setProperties("RSY RSR NKY", "position position position", "0 0 0")
-    robot.waitForJoint("RSR")
-    robot.waitForJoint("RSY")
-  #  robot.waitForJoint("NKY")
+    robot.waitForJoint("REP")
 
+def armUp(robot):
+    robot.setProperty("NKY", "position", -.65)
+    robot.setProperties("RSY RSR", "position position", "1.57 -1.35")
+
+def swingArm(robot):
+    robot.setProperty("REP", "position", -1.7)
+    robot.waitForJoint("REP")
+    robot.setProperty("REP", "position", 0)
+    robot.waitForJoint("REP")
+
+def armDown(robot):
+    robot.setProperties("RSY RSR NKY", "position position position", "0 0 0")
+
+
+def doTheRobot(robot):
+    armUp(robot)
+    waitForJoints(robot)
+
+    for i in range(0, 2):
+        swingArm(robot)
+
+    armDown(robot)
+    waitForJoints(robot)
 
 def standUp(robot):
     robot.setProperties("RFZ LFZ", "position position", "-.56 -.56")
     robot.waitForJoint("RFZ")
     robot.waitForJoint("LFZ")
+
+def getDanceList():
+    danceList = []
+    #add all of the key parts of the dance. Including the wait for joints
+    danceList.append(armUp)
+    danceList.append(waitForJoints)
+    danceList.append(swingArm)
+    danceList.append(swingArm)
+    danceList.append(swingArm)
+    danceList.append(armDown)
+    danceList.append(waitForJoints)
+
+    return danceList
 
 def theRobotRobot(robot):
     bendDown(robot)

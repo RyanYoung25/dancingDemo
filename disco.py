@@ -84,6 +84,16 @@ def stayAlive():
     robot.setProperty("WST", "velocity", 1)
     stand(robot)
 
+def getDanceList():
+    danceList = []
+    #add all of the key parts of the dance. Including the wait for joints
+    danceList.append(armUp)
+    danceList.append(waitForJoints)
+    danceList.append(armDown)
+    danceList.append(waitForJoints)
+
+    return danceList
+
 def stayAliveRobot(robot):
     crouch(robot)
     robot.setProperty("WST", "velocity", 0.3)
