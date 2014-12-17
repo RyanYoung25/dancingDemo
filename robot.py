@@ -36,6 +36,11 @@ def standUp(robot):
     robot.waitForJoint("RFZ")
     robot.waitForJoint("LFZ")
 
+def theRobotRobot(robot):
+    bendDown(robot)
+    doTheRobot(robot)
+    standUp(robot)
+
 
 if __name__ == '__main__':
     theRobot()

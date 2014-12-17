@@ -84,6 +84,18 @@ def stayAlive():
     robot.setProperty("WST", "velocity", 1)
     stand(robot)
 
+def stayAliveRobot(robot):
+    crouch(robot)
+    robot.setProperty("WST", "velocity", 0.3)
+    for i in xrange(0, 5):
+        armUp(robot)
+        waitForJoints(robot)
+        armDown(robot)
+        waitForJoints(robot)
+    upperToZero(robot)
+    robot.setProperty("WST", "velocity", 1)
+    stand(robot)
+
 
 if __name__ == '__main__':
     stayAlive()

@@ -69,5 +69,12 @@ def chickenDance():
     moveArmsDown(robot)
     stand(robot)
 
+def chickenDanceRobot(robot):
+    crouch(robot)
+    moveArmsUp(robot)
+    twistAndDance(robot)
+    moveArmsDown(robot)
+    stand(robot)
+
 if __name__ == '__main__':
     chickenDance()

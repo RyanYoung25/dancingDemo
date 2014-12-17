@@ -119,5 +119,25 @@ def walkLikeAnEgyptian():
     wait_for_joint(robot)
     stand(robot)
 
+def walkLikeAnEgyptianRobot(robot):
+    crouch(robot)
+    for i in xrange(0, 3):
+        
+        for i in xrange(0, 2): 
+            one_way_S(robot)
+            wait_for_joint(robot)
+            one_way_extended(robot)
+            wait_for_joint(robot)
+
+        for i in xrange(0, 2):    
+            other_way_S(robot)
+            wait_for_joint(robot)
+            other_way_extended(robot)
+            wait_for_joint(robot)
+    
+    upper_body_home(robot)
+    wait_for_joint(robot)
+    stand(robot)
+
 if __name__ == '__main__':
     walkLikeAnEgyptian()
