@@ -27,7 +27,7 @@ listening = True
 
 class songListener(threading.Thread):
     """This class listens for songs in a background thread using the Dejavu audio 
-    fingerprinter. When it hears a song"""
+    fingerprinter. When it hears a song it sets global flags"""
 
     global chickenDance
     global robotDance
