@@ -17,6 +17,7 @@ def waitForJoints(robot):
     robot.waitForJoint("WST")
 
 def armUp(robot):
+    robot.setProperty("WST", "velocity", 0.3)
     robot.setProperty("RSP", "position", -0.287)
     robot.setProperty("RSR", "position", -2.215)
     robot.setProperty("RSY", "position", 0.239)
@@ -30,8 +31,10 @@ def armUp(robot):
     robot.setProperty("RWY", "position", 0.082)
     robot.setProperty("LWY", "position", 0)
     robot.setProperty("WST", "position", -.3)
+    robot.setProperty("WST", "velocity", 1)
 
 def armDown(robot):
+    robot.setProperty("WST", "velocity", 0.3)
     robot.setProperty("RSP", "position", -0.287)
     robot.setProperty("RSR", "position", -0.054)
     robot.setProperty("RSY", "position", 0.958)
@@ -45,6 +48,7 @@ def armDown(robot):
     robot.setProperty("RWY", "position", 0.368)
     robot.setProperty("LWY", "position", 0)
     robot.setProperty("WST", "position", .3)
+    robot.setProperty("WST", "velocity", 1)
 
 def upperToZero(robot):
     robot.setProperty("RSP", "position", 0)

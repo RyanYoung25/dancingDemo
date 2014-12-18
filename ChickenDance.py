@@ -22,31 +22,51 @@ def moveArmsUp(robot):
 def Dance(robot):
     robot.setProperties("RSR LSR", "velocity velocity", "2 2")
     for i in xrange(0, 3):
-        robot.setProperty("RSR", "position", -.85)
-        robot.setProperty("LSR", "position", .85)
-        robot.waitForJoint("RSR")
-        robot.waitForJoint("LSR")
-        robot.setProperty("RSR", "position", -1.85)
-        robot.setProperty("LSR", "position", 1.85)
-        robot.waitForJoint("RSP")
-        robot.waitForJoint("LSR")
+        flapUp(robot)
+
+        flapDown(robot)
+
+    armsMiddle(robot)
+    robot.setProperties("RSR LSR", "velocity velocity", "1 1")
+
+def flapUp(robot):
+    robot.setProperty("RSR", "position", -1.85)
+    robot.setProperty("LSR", "position", 1.85)
+    robot.waitForJoint("RSR")
+    robot.waitForJoint("LSR")
+
+def flapDown(robot):
+    robot.setProperty("RSR", "position", -.85)
+    robot.setProperty("LSR", "position", .85)
+    robot.waitForJoint("RSR")
+    robot.waitForJoint("LSR") 
+
+def armsMiddle(robot):
     robot.setProperty("RSR", "position", -1.27)
     robot.setProperty("LSR", "position", 1.27)
     robot.waitForJoint("RSP")
     robot.waitForJoint("LSR")
-    robot.setProperties("RSR LSR", "velocity velocity", "1 1")
-
 
 def twistAndDance(robot):
     for i in xrange(0, 3):
-        robot.setProperty("WST", "position", -.45)
-        robot.waitForJoint("WST")
+        twistLeft(robot)
         Dance(robot)
-        robot.setProperty("WST", "position", .45)
-        robot.waitForJoint("WST")
+        twistRight(robot)
         Dance(robot)
+    centerTwist(robot)
+
+def twistLeft(robot):
+    robot.setProperty("WST", "position", -.45)
+    robot.waitForJoint("WST")
+
+def twistRight(robot):
+    robot.setProperty("WST", "position", .45)
+    robot.waitForJoint("WST")
+
+def centerTwist(robot):
     robot.setProperty("WST", "position", 0)
     robot.waitForJoint("WST")
+
 
 def moveArmsDown(robot):
     robot.setProperties("RSP RSR RSY REP", "position position position position", "0 0 0 0")
@@ -75,6 +95,27 @@ def chickenDanceRobot(robot):
     twistAndDance(robot)
     moveArmsDown(robot)
     stand(robot)
+
+def getDanceList():
+    danceList = []
+    #add all of the key parts of the dance.    
+    #arms ups
+    danceList.append(moveArmsUp)
+    #twist left
+    danceList.append(twistLeft)
+    #dance
+    for i in xrange(0, 2):
+        danceList.append(flapUp)
+        danceList.append(flapDown)
+    #twist right
+    danceList.append(twistRight)
+    #dance
+    for i in xrange(0, 2):
+        danceList.append(flapUp)
+        danceList.append(flapDown)
+
+
+    return danceList
 
 if __name__ == '__main__':
     chickenDance()

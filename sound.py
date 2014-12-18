@@ -34,6 +34,7 @@ class songListener(threading.Thread):
     global discoDance
     global egyptianDance
     global ymcaDance
+    global danceStop
 
     def __init__(self, config):
         threading.Thread.__init__(self)
@@ -87,7 +88,6 @@ class songListener(threading.Thread):
                 danceStop = False
 
             else:
-                danceStop = True
                 chickenDance = False
                 robotDance = False
                 discoDance = False
@@ -132,6 +132,7 @@ def upperHome(theRobot):
     theRobot.setProperty("RWY", "position", 0)
     theRobot.setProperty("LWY", "position", 0)
     theRobot.setProperty("NKY", "position", 0)
+    theRobot.setProperty("WST", "position", 0)
 
 #block for all of the joints to get done moving
 def waitForJoints(robot):
@@ -159,6 +160,7 @@ def signal_handler(signal, frame):
 
 def main():
     global listening
+    global danceStop
 
     signal.signal(signal.SIGINT, signal_handler)
 
@@ -188,6 +190,9 @@ def main():
     #loop in main thread and dance if we should be dancing.
     while(listening):
 
+        if danceStop:
+            continue
+
         if chickenDance:
             #Get the chicken dance list
             danceList = ChickenDance.getDanceList()
@@ -202,17 +207,18 @@ def main():
             danceList = walkLikeAnEgyptian.getDanceList()
         elif ymcaDance:
             #Get the ymca dance list
-            print "Dance a step"
             danceList = YMCA.getDanceList()
-        elif danceStop:
+        else:
             #In here we need to stop/do nothing.
             #Set the robot back to home
             upperHome(theRobot)
             waitForJoints(theRobot)
             #Reset the index
             index = 0;
-            continue
-        else:
+            #Reset dance stop
+            danceStop = True
+
+            print "It is now save to end the demo with ctrl-c"
             continue
 
         #Do a step of the dance

@@ -144,15 +144,15 @@ def getDanceList():
     #add all of the key parts of the dance. Including the wait for joints
     for i in xrange(0, 2):
         danceList.append(one_way_S)
-        danceList.append(waitForJoints)
+        danceList.append(wait_for_joint)
         danceList.append(one_way_extended)
-        danceList.append(waitForJoints)
+        danceList.append(wait_for_joint)
 
     for i in xrange(0, 2):
         danceList.append(other_way_S)
-        danceList.append(waitForJoints)
+        danceList.append(wait_for_joint)
         danceList.append(other_way_extended)
-        danceList.append(waitForJoints)
+        danceList.append(wait_for_joint)
 
 
     return danceList
