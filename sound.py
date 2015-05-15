@@ -52,8 +52,14 @@ class songListener(threading.Thread):
         #do the listening
         while(self.running):
 
-            response = self.djv.recognize(MicrophoneRecognizer, seconds=5)
+            response = self.djv.recognize(MicrophoneRecognizer, seconds=3.5)
             if(response == None):
+                chickenDance = False
+                robotDance = False
+                discoDance = False
+                egyptianDance = False
+                ymcaDance = False
+                print "Nothing found"
                 continue
 
             if(response["confidence"] > 30 and response["song_name"] == "chickenDance") and (not (robotDance or discoDance or egyptianDance or ymcaDance)):
@@ -88,6 +94,7 @@ class songListener(threading.Thread):
                 danceStop = False
 
             else:
+                print "Confidence less than 30"
                 chickenDance = False
                 robotDance = False
                 discoDance = False
@@ -218,7 +225,7 @@ def main():
             #Reset dance stop
             danceStop = True
 
-            print "It is now save to end the demo with ctrl-c"
+            print "It is now safe to end the demo with ctrl-c"
             continue
 
         #Do a step of the dance
